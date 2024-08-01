@@ -28,7 +28,7 @@ func Test() {
 	vanNode := linkList.insertAtTheFront("Van")
 	linkList.insertAtTheFront("Son")
 	linkList.insertAtTheMiddle(vanNode, "123")
-	linkList.insertAtTheEnd("DT")
+	linkList.InsertAtTheEnd("DT")
 	ScanLinkList(linkList.head)
 
 	// delete node
@@ -69,8 +69,12 @@ func (l *LinkList) insertAtTheMiddle(prev_node *Node, value string) {
 	prev_node.next = newNode
 }
 
-func (l *LinkList) insertAtTheEnd(value string) {
+func (l *LinkList) InsertAtTheEnd(value string) {
 	newNode := &Node{data: value, next: nil}
+	if l.head == nil {
+		l.head = newNode
+		return
+	}
 	currentNode := l.head
 	for {
 		if currentNode.next == nil {

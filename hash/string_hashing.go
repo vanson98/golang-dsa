@@ -17,3 +17,17 @@ func (ht *HashTableLinear) hashString(str string) int {
 	}
 	return sum / ht.size
 }
+
+func stringFoldingHashing(s string) int {
+	var sum int = 0
+	var mul int = 1
+	for i := 0; i < len(s); i++ {
+		if i%4 == 0 {
+			mul = 1
+		} else {
+			mul *= 256
+		}
+		sum = sum + (int(s[i]) * mul)
+	}
+	return sum % hashTableSize
+}
