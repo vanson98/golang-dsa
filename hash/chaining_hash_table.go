@@ -5,28 +5,30 @@ import (
 )
 
 type ChainingHashTable struct {
-	key   [hashTableSize]lls.LinkList
-	value [hashTableSize]lls.LinkList
+	values [hashTableSize]lls.LinkList
 }
 
 func TestChainingHashTable() {
-	ht := initChainingHashTable()
-	ht.insert(1234, "Nguyen Van Son")
-	ht.insert(3324, "Son Nguyen Van")
+	ht := InitChainingHashTable()
+	ht.Insert(1234, "Nguyen Van Son")
+	ht.Insert(3324, "Son Nguyen Van")
 }
 
-func initChainingHashTable() ChainingHashTable {
+func InitChainingHashTable() ChainingHashTable {
 	cnHashTb := ChainingHashTable{}
 	for i := 0; i < hashTableSize; i++ {
-		cnHashTb.key[i] = lls.LinkList{}
-
-		cnHashTb.value[i] = lls.LinkList{}
+		cnHashTb.values[i] = lls.LinkList{}
 	}
 	return cnHashTb
 }
 
-func (ht *ChainingHashTable) insert(key interface{}, value interface{}) {
+func (ht *ChainingHashTable) Insert(key int, value string) {
 	index := HashKey(key)
+	ht.values[index].InsertAtTheEnd(value)
+}
 
-	ht.key[index].InsertAtTheEnd(value)
+func (ht *ChainingHashTable) GetValue(key int) {
+	//index := HashKey(key)
+
+	//ht.values[index].SearchByValue()
 }

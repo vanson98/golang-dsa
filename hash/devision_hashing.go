@@ -58,7 +58,7 @@ func HashKey(key interface{}) int {
 	return index
 }
 
-func (ht *HashTableLinear) insert(key interface{}, value interface{}) {
+func (ht *HashTableLinear) Insert(key interface{}, value interface{}) {
 	index := HashKey(key)
 
 	// check duplicate key
@@ -76,7 +76,7 @@ func (ht *HashTableLinear) insert(key interface{}, value interface{}) {
 	ht.values[index] = value
 }
 
-func (ht *HashTableLinear) get(key interface{}) interface{} {
+func (ht *HashTableLinear) Get(key interface{}) interface{} {
 	index := HashKey(key)
 
 	for ht.keys[index] != key {
@@ -91,23 +91,23 @@ func TestHashTableLinear() {
 		size: hashTableSize,
 	}
 
-	ht.insert(234, "Son")
-	ht.insert(10, "Tien")
-	ht.insert(10, "Tien Bip")
-	ht.insert(33, "Tung")
-	ht.insert(43, "Chung")
-	ht.insert(123, "Son")
-	ht.insert(3245345, "Tien")
-	ht.insert(234, "Tien Bip")
-	ht.insert(768, "Tung")
-	ht.insert(433333, "Chung")
+	ht.Insert(234, "Son")
+	ht.Insert(10, "Tien")
+	ht.Insert(10, "Tien Bip")
+	ht.Insert(33, "Tung")
+	ht.Insert(43, "Chung")
+	ht.Insert(123, "Son")
+	ht.Insert(3245345, "Tien")
+	ht.Insert(234, "Tien Bip")
+	ht.Insert(768, "Tung")
+	ht.Insert(433333, "Chung")
 
-	ht.insert(431, "Chung")
-	ht.insert(1231, "Son")
-	ht.insert(32453453, "Tien")
-	ht.insert(2345, "Tien Bip")
-	ht.insert(76899, "Tung")
-	ht.insert(4333, "Chung")
+	ht.Insert(431, "Chung")
+	ht.Insert(1231, "Son")
+	ht.Insert(32453453, "Tien")
+	ht.Insert(2345, "Tien Bip")
+	ht.Insert(76899, "Tung")
+	ht.Insert(4333, "Chung")
 
 	// ht.insert("K001", "Nguyen Van Son 0")
 	// ht.insert("K002", "Nguyen Van Son 1")
@@ -116,7 +116,7 @@ func TestHashTableLinear() {
 
 	//fmt.Println(ht.get("K002"))
 	// fmt.Println(ht.get(234))
-	fmt.Println(ht.get(43))
+	fmt.Println(ht.Get(43))
 	// fmt.Println(ht.get(33))
 
 	fmt.Println(ht.keys[:]...)
