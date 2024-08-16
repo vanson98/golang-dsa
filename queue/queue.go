@@ -5,43 +5,47 @@ import (
 )
 
 func TestQueue() {
-	myqueue := Queue[int]{cap: 5, rear: -1, front: -1}
-	myqueue.initQueue()
+	myqueue := InitQueue[int](100)
 
-	myqueue.enqueue(2)
-	myqueue.enqueue(3)
-	myqueue.enqueue(6)
-	myqueue.enqueue(6)
-	myqueue.enqueue(6)
+	myqueue.Enqueue(2)
+	myqueue.Enqueue(3)
+	myqueue.Enqueue(6)
+	myqueue.Enqueue(6)
+	myqueue.Enqueue(6)
 
-	myqueue.isFull()
+	myqueue.IsFull()
 
-	myqueue.dequeue()
-	myqueue.dequeue()
-	myqueue.dequeue()
-	myqueue.dequeue()
-	myqueue.dequeue()
-	myqueue.isEmpty()
+	myqueue.Dequeue()
+	myqueue.Dequeue()
+	myqueue.Dequeue()
+	myqueue.Dequeue()
+	myqueue.Dequeue()
+	myqueue.IsEmpty()
 
-	myqueue.enqueue(62)
-	myqueue.enqueue(16)
-	myqueue.enqueue(61)
-	myqueue.enqueue(33)
+	myqueue.Enqueue(62)
+	myqueue.Enqueue(16)
+	myqueue.Enqueue(61)
+	myqueue.Enqueue(33)
 	fmt.Print(myqueue.data)
 }
 
 type Queue[T any] struct {
-	data  []T
 	cap   int
+	data  []T
 	rear  int
 	front int
 }
 
-func (q *Queue[T]) initQueue() {
-	q.data = make([]T, q.cap)
+func InitQueue[T any](cap int) Queue[T] {
+	return Queue[T]{
+		cap:   cap,
+		data:  make([]T, cap),
+		rear:  -1,
+		front: -1,
+	}
 }
 
-func (q *Queue[T]) enqueue(element T) {
+func (q *Queue[T]) Enqueue(element T) {
 	if q.rear == q.cap-1 {
 		panic("Queue is full")
 	} else {
@@ -53,8 +57,8 @@ func (q *Queue[T]) enqueue(element T) {
 	}
 }
 
-func (q *Queue[T]) dequeue() T {
-	if q.isEmpty() {
+func (q *Queue[T]) Dequeue() T {
+	if q.IsEmpty() {
 		return getZero[T]()
 	} else {
 		elm := q.data[q.front]
@@ -70,7 +74,7 @@ func (q *Queue[T]) dequeue() T {
 	}
 }
 
-func (q *Queue[T]) isEmpty() bool {
+func (q *Queue[T]) IsEmpty() bool {
 	if q.rear == -1 && q.front == -1 {
 		fmt.Println("Queue is empty")
 		return true
@@ -78,7 +82,7 @@ func (q *Queue[T]) isEmpty() bool {
 	return false
 }
 
-func (q *Queue[T]) isFull() bool {
+func (q *Queue[T]) IsFull() bool {
 	if q.rear == q.cap-1 && q.front == 0 {
 		fmt.Println("Queue is full")
 		return true
@@ -86,15 +90,15 @@ func (q *Queue[T]) isFull() bool {
 	return false
 }
 
-func (q *Queue[T]) getFront() T {
-	if q.isEmpty() {
+func (q *Queue[T]) GetFront() T {
+	if q.IsEmpty() {
 		return getZero[T]()
 	}
 	return q.data[q.front]
 }
 
-func (q *Queue[T]) getRear() T {
-	if q.isEmpty() {
+func (q *Queue[T]) GetRear() T {
+	if q.IsEmpty() {
 		return getZero[T]()
 	}
 	return q.data[q.rear]

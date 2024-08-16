@@ -9,7 +9,9 @@ import (
 	//"dsa_demo/stack"
 	//"dsa_demo/queue"
 	//"dsa_demo/heap"
-	"dsa_demo/hash"
+	//"dsa_demo/hash"
+
+	"dsa_demo/tree"
 )
 
 func main() {
@@ -46,7 +48,11 @@ func main() {
 	//heap.RunTest()
 	//heap.TestHeapSort()
 
-	hash.TestHashTableLinear()
+	//hash.TestHashTableLinear()
 	//hash.TestHashMapTable()
 	//hash.TestStringHashing()
+	//hash.TestChainingHashTable()
+
+	tree.TestTree()
+
 }
